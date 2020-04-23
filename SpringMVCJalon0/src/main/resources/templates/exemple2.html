@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Exemple 2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Un calcul simple de: <span th:text="${simpleCalcul.typeCalcul()}"/> </h1>
+        <div><span th:text="${simpleCalcul.getA()}"/> <span th:text="${simpleCalcul.getOp()}"/> <span th:text="${simpleCalcul.getB()}"/> = 
+            <span th:text="${simpleCalcul.getResultat()}"/></div>
+        <div>
+            <br/>
+            <br/>
+            <h3><i>Note</i></h3>
+            Entrer <b>plus</b>,<b>moins</b>,<b>division</b>,<b>fois</b> pour le parametre <b>op</b>
+        </div>
+    </body>
+</html>

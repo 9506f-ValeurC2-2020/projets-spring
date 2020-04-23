@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Un Jeu</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Explication de Jeu</h1>
+        <div>le jeu est de <span th:text="${essai}"/> essai, on choisit un nombre au hazard entre 0 et 10<br/>
+            vous devez connaitre si le second nombre qu'on choisit plus tard est egal, plus petit ou plus grand que le premier.<br/>
+            <b>S'amuser</b>
+        </div>
+
+        <h3>Votre score est: <span id="score">0</span></h3>
+
+        Le premier nombre est: <span id="premier"/></span><br/>
+    Le deuxieme est... <span id="second"></span><br/>
+    <div>    
+        <button name="plus_petit" onclick="repondre(-1)"><</button>
+        <button name="egal" onclick="repondre(0)">=</button>
+        <button name="plus_grand" onclick="repondre(1)">></button>
+
+    </div>
+    <script>
+        let played = 0;
+        let score = 0;
+        let premierNombre;
+        let deuxiemeNombre;
+        window.onload = demarrerJeu();
+        function demarrerJeu() {
+            if (played === 15) {
+                alert("Great work, your score is" + score);
+                document.getElementById("score").innerHTML = "0";
+                played = 0;
+            }
+            premierNombre = Math.floor(Math.random() * 11);
+            document.getElementById("premier").innerHTML = "<span id='premier'>" + premierNombre + "</span>";
+            deuxiemeNombre = Math.floor(Math.random() * 11);
+            document.getElementById("second").innerHTML = "Cache";
+        }
+        function repondre(code) {
+            played += 1;
+            document.getElementById("second").innerHTML = "<span id='second'>" + deuxiemeNombre + "</span>";
+            switch (code) {
+                case 0:
+                    if (premierNombre === deuxiemeNombre)
+                        score++;
+                    setTimeout(demarrerJeu, 500);
+                    break;
+                case 1:
+                    if (deuxiemeNombre > premierNombre)
+                        score++;
+                    setTimeout(demarrerJeu, 500);
+                    break;
+                default:
+                    if (deuxiemeNombre < premierNombre)
+                        score++;
+                    setTimeout(demarrerJeu, 500);
+                    break;
+            }
+            document.getElementById("score").innerHTML = score;
+
+        }
+    </script>
+</body>
+</html>
